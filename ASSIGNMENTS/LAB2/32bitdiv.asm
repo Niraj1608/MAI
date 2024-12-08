@@ -1,0 +1,29 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+    NUMBER DD 12345678H
+    DIVISOR DW 5678H
+    QUOTIENT DW ?
+    REMAINDER DW ?
+    
+.CODE
+START:
+    MOV AX, @DATA
+    MOV DS, AX
+    
+    MOV AX, WORD PTR NUMBER
+    MOV DX, WORD PTR NUMBER+2
+    
+    MOV BX, DIVISOR
+    
+    DIV BX
+    
+    MOV QUOTIENT, AX
+    MOV REMAINDER, DX
+    
+    MOV AH, 4CH
+    INT 21H
+    
+END START
+    
